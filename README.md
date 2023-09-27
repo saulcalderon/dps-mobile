@@ -12,5 +12,7 @@
 
 [Tablero de Trello](https://trello.com/b/LXK9Zcj4/fase-1-proyecto-dps)
 
-[Mockups en Canva](https://www.canva.com/design/DAFvldKzB64/30sIH_O6MwzYirowqdJpvw/edit?utm_content=DAFvldKzB64&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[Mockups en Canva con alta definición](https://www.canva.com/design/DAFvrF_6sUc/6aGD1ttdyafsuHReP1LxNw/view?utm_content=DAFvrF_6sUc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+
+[Archivo PDF con los Mockups](https://drive.google.com/file/d/1UDCQxmaTwE8VRIQFNRBGqEPFV4AKZ9U7/view)
 
