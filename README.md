@@ -16,6 +16,8 @@
 
 [Archivo PDF con los Mockups](https://drive.google.com/file/d/1UDCQxmaTwE8VRIQFNRBGqEPFV4AKZ9U7/view)
 
+[Documento PDF](https://github.com/saulcalderon/dps-mobile/blob/main/DESARROLLOMULTIPLATAFORMAFASE1.pdf)
+
 ## Licencia
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
