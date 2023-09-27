@@ -10,7 +10,7 @@
 ## Enlaces
 [Repositorio del código del servidor](https://github.com/saulcalderon/dps-backend)
 
-[Tablero de Trello](https://trello.com/invite/b/O4c7oqaa/ATTI4365b0a4df81716035154ffc628373478AD86230/proyecto-dps)
+[Tablero de Trello](https://trello.com/b/LXK9Zcj4/fase-1-proyecto-dps)
 
 [Mockups en Canva](https://www.canva.com/design/DAFvldKzB64/30sIH_O6MwzYirowqdJpvw/edit?utm_content=DAFvldKzB64&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
