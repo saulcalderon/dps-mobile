@@ -7,9 +7,13 @@ function LoginVista() {
     return (
       <View style={styles.container} >
 
-      <View style={styles.view}> <LogoExample/> </View>
+      <View style={styles.view}> 
+      <LogoExample/> 
+      </View>
 
-      <Text style={styles.title}> Inicio de Sesión </Text>
+      <Text style={styles.title}> 
+      Inicio de Sesión 
+      </Text>
 
       <View style={styles.card}>
 
@@ -20,14 +24,20 @@ function LoginVista() {
           placeholder="  Contraseña"/>
 
         <Pressable style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
-          <Text style={styles.text}>Iniciar Sesión</Text>
+          <Text style={styles.text}>
+            Iniciar Sesión
+            </Text>
         </Pressable>
 
-        <Text style={styles.title}> O </Text>
+        <Text style={styles.title}> 
+        O 
+        </Text>
 
 
         <Pressable style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
-         <Text style={styles.text}>Iniciar sesión con Gmail</Text>
+         <Text style={styles.text}>
+          Iniciar sesión con Gmail
+          </Text>
         </Pressable>
 
         </View>
