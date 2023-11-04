@@ -3,10 +3,14 @@ import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-;
 import Inicio from './views/InicioVista.js';
-import LoginVista from './views/LoginVista.js';
-import RegistroVista from './views/RegistroVista.js';
+import LoginUsuario from './views/LoginUsuario.js';
+import CitasVista from './views/CitasVista.js';
+import CrearCita from './views/CrearCita.js';
+import PacientesVista from './views/PacientesVista.js';
+import PacienteRegistro from './views/PacienteRegistro.js';
+import RegistroUsuario from './views/RegistroUsuario.js';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -19,10 +23,17 @@ export default function App() {
         <Stack.Navigator headerMode = 'none'>
           
           <Stack.Screen name = 'Inicio' component={Inicio}/>
-          <Stack.Screen name = 'Login' component={LoginVista} />
-          <Stack.Screen name = 'Registro' component={RegistroVista} />
+          <Stack.Screen name = 'Login' component={LoginUsuario} />
+          <Stack.Screen name = 'Registro' component={RegistroUsuario} />
+          <Stack.Screen name = 'Citas' component={CitasVista}/>
+          <Stack.Screen name = 'Crear-Cita' component={CrearCita}/>
+          <Stack.Screen name = 'Pacientes' component={PacientesVista}/>
+          <Stack.Screen name = 'Crear-Paciente' component={PacienteRegistro}/>
+
 
         </Stack.Navigator>
+
+
 
       </NavigationContainer>
 
