@@ -4,6 +4,7 @@ import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-nati
 
 import LogoExample from '../components/Logo.js';
 import Menu from '../components/Menu.js';
+import BotonCrearCita from '../components/BotonCrearCita.js';
 
 function CitasVista({ navigation }) {
   return (
@@ -20,19 +21,12 @@ function CitasVista({ navigation }) {
 
     <View style={styles.card}>
 
-
-    <Pressable  style={styles.buttonR} onPress={() => navigation.navigate('Crear-Cita')}>
-      <Text  style={styles.textR}>
-        Crear Nueva Cita
-        
-        </Text>
-     </Pressable>
-
       </View>
-
+      <View style={styles.menu}>
+    <BotonCrearCita/>
+    </View>
 
       <View style={styles.menu}>
-
     <Menu/>
     </View>
 
@@ -133,6 +127,7 @@ const styles = StyleSheet.create({
   },
 
   buttonR: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,

@@ -38,7 +38,10 @@ function Menu() {
 
     export default Menu;
 
-    const styles = StyleSheet.create({menu: {
+    const styles = StyleSheet.create({
+      
+      
+      menu: {
         alignItems: 'center',
         justifyContent: 'center',
         
