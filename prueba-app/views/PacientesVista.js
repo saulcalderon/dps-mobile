@@ -4,6 +4,7 @@ import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-nati
 
 import LogoExample from '../components/Logo.js';
 import Menu from '../components/Menu.js';
+import BotonCrearPaciente from '../components/BotonCrearPaciente.js';
 
 function PacientesVista({ navigation }) {
   return (
@@ -20,21 +21,15 @@ function PacientesVista({ navigation }) {
 
     <View style={styles.card}>
 
+    </View>
 
-    <Pressable  style={styles.buttonR} onPress={() => navigation.navigate('Crear-Paciente')}>
-      <Text  style={styles.textR}>
-        Registrar Nuevo Paciente
-        
-        </Text>
-     </Pressable>
-
+    <View style={styles.menu}>
+         <BotonCrearPaciente/>
       </View>
 
-
       <View style={styles.menu}>
-
-    <Menu/>
-    </View>
+         <Menu/>
+      </View>
 
     </View>
   );
