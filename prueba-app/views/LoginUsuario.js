@@ -3,7 +3,7 @@ import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-nati
 
 import LogoExample from '../components/Logo.js';
 
-function LoginVista() {
+function LoginUsuario({ navigation }) {
     return (
       <View style={styles.container} >
 
@@ -23,7 +23,7 @@ function LoginVista() {
         <TextInput secureTextEntry={true} style={styles.input}
           placeholder="  Contraseña"/>
 
-        <Pressable style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Citas')}>
           <Text style={styles.text}>
             Iniciar Sesión
             </Text>
@@ -48,7 +48,7 @@ function LoginVista() {
   }
 
 
-  export default LoginVista;
+  export default LoginUsuario;
 
   const styles = StyleSheet.create({
 

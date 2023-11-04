@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Zocial } from '@expo/vector-icons'; 
 
 import LogoExample from '../components/Logo.js';
+import Menu from '../components/Menu.js';
 
-function RegistroVista() {
+function PacienteRegistro() {
   return (
     <View style={styles.container} >
 
@@ -13,51 +16,44 @@ function RegistroVista() {
 
 
     <Text style={styles.title}> 
-    Registrarse 
+    Registrar Paciente
     </Text>
 
     <View style={styles.card}>
 
       <TextInput style={styles.input}
-      placeholder="  Nombre"/>
+      placeholder="  Nombres"/>
 
      <TextInput style={styles.input}
       placeholder="  Apellidos"/>
    
 
     <TextInput style={styles.input}
-      placeholder="  Especialidad"/>
+      placeholder="  Fecha de nacimiento"/>
 
-    <TextInput style={styles.input}
-      placeholder="  Correo"/>
+    <TextInput style={styles.notas}
+      placeholder="  Notas"/>
 
-    <TextInput secureTextEntry={true} style={styles.input}
-      placeholder="  Contraseña"/>
-
-
-    <Pressable  style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
-      <Text  style={styles.text}>
-        Registrarse
+    <Pressable  style={styles.buttonR} onPress={() => Alert.alert('Simple Button pressed')}>
+      <Text  style={styles.textR}>
+        Registrar
         
         </Text>
-    </Pressable>
+     </Pressable>
 
-    <Text style={styles.title}>    
-    O 
-    </Text>
-
-    <Pressable style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
-      <Text style={styles.text}>
-        Registrarse con Gmail
-        </Text>
-    </Pressable>
       </View>
+
+
+      <View style={styles.menu}>
+
+    <Menu/>
+    </View>
 
     </View>
   );
 }
 
-export default RegistroVista;
+export default PacienteRegistro;
 
 
 
@@ -86,7 +82,15 @@ const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
     justifyContent: 'top',
-    flex: 9,
+    flex: 8,
+    backgroundColor: '#fff'
+  },
+
+  menu: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    flexDirection: 'row',
     backgroundColor: '#fff'
   },
 
@@ -94,14 +98,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: 200,
+    width: 100,
     borderRadius: 6,
-    elevation: 3,
-    backgroundColor: 'red',
-    margin: 4
+    backgroundColor: 'white',
+    margin: 2
   },
   
   text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'red',
+  },
+
+
+  textR: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
@@ -119,6 +131,28 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     margin: 20
-  }
+  },
 
+  notas: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'grey',
+    borderRadius: 6,
+    height: 100,
+    width: 200,
+    borderWidth: 2,
+    borderColor: 'black',
+    margin: 20
+  },
+
+  buttonR: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 200,
+    borderRadius: 6,
+    elevation: 3,
+    backgroundColor: 'red',
+    margin: 4
+  },
 });
