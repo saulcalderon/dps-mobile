@@ -1,9 +1,40 @@
 import * as React from 'react';
 import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { auth } from '../firebase.js';
 
 import LogoExample from '../components/Logo.js';
 
 function LoginUsuario({ navigation }) {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const handleLogin = async () => {
+      if (!email) {
+        Alert.alert('Correo no puede estar vacío');
+        return;
+      }
+
+      if (!password) {
+        Alert.alert('Contraseña no puede estar vacía');
+        return;
+      }
+
+      try {
+        const response = await signInWithEmailAndPassword(auth,
+          email,
+          password
+        );
+        const token = await response.user.getIdToken();
+        await AsyncStorage.setItem('userToken', token);
+        navigation.navigate('Citas');
+      } catch (e) {
+        Alert.alert('Correo o contraseña incorrectos, intente de nuevo.');
+        return;
+      }
+    };
+
     return (
       <View style={styles.container} >
 
@@ -18,12 +49,16 @@ function LoginUsuario({ navigation }) {
       <View style={styles.card}>
 
         <TextInput style={styles.input}
-          placeholder="  Correo"/>
+          placeholder="  Correo"
+          onChangeText={text => setEmail(text)}
+          />
 
         <TextInput secureTextEntry={true} style={styles.input}
-          placeholder="  Contraseña"/>
+          placeholder="  Contraseña"
+          onChangeText={text => setPassword(text)}
+          />
 
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Citas')}>
+        <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.text}>
             Iniciar Sesión
             </Text>
