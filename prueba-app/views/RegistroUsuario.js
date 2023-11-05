@@ -3,7 +3,61 @@ import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-nati
 
 import LogoExample from '../components/Logo.js';
 
-function RegistroUsuario() {
+function RegistroUsuario({ navigation }) {
+  const [formData, setFormData] = React.useState({
+    firstName: "",
+    lastName: "",
+    specialization: "",
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = () => {
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.specialization ||
+      !formData.email ||
+      !formData.password
+    ) {
+      Alert.alert("Por favor llene todos los campos");
+      return;
+    }
+
+    fetch(process.env.API_URL + "/users/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.status === 201 ? response : Promise.reject(response))
+      .then((data) => {
+        Alert.alert("Registro exitoso", "Inicie sesión para continuar", [
+          {
+            text: "OK",
+            onPress: () => navigation.navigate("Login"),
+          },
+        ]);
+      })
+      .catch((error) => {
+        if (error?.status === 400) {
+          error.json().then((body) => {
+            Alert.alert("Error", body?.message?.join(", "));
+          });
+          return;
+        }
+
+        if (error?.status === 409) {
+          Alert.alert("Error", "El correo ya está registrado");
+          return;
+        }
+
+        Alert.alert("Error", "Ocurrió un error al registrar el usuario");
+      });
+  };
+    
+
   return (
     <View style={styles.container} >
 
@@ -19,23 +73,28 @@ function RegistroUsuario() {
     <View style={styles.card}>
 
       <TextInput style={styles.input}
+      onChangeText={text => setFormData({...formData, firstName: text})}
       placeholder="  Nombre"/>
 
      <TextInput style={styles.input}
+      onChangeText={text => setFormData({...formData, lastName: text})}
       placeholder="  Apellidos"/>
    
 
     <TextInput style={styles.input}
+      onChangeText={text => setFormData({...formData, specialization: text})}
       placeholder="  Especialidad"/>
 
     <TextInput style={styles.input}
+      onChangeText={text => setFormData({...formData, email: text})}
       placeholder="  Correo"/>
 
     <TextInput secureTextEntry={true} style={styles.input}
+      onChangeText={text => setFormData({...formData, password: text})}
       placeholder="  Contraseña"/>
 
 
-    <Pressable  style={styles.button} onPress={() => Alert.alert('Simple Button pressed')}>
+    <Pressable  style={styles.button} onPress={handleSubmit}>
       <Text  style={styles.text}>
         Registrarse
         
