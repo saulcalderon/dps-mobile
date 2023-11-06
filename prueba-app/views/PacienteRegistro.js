@@ -1,12 +1,66 @@
 import * as React from 'react';
 import { View, Alert,TextInput, Text, StyleSheet, Pressable   } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Zocial } from '@expo/vector-icons'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LogoExample from '../components/Logo.js';
 import Menu from '../components/Menu.js';
 
-function PacienteRegistro() {
+function PacienteRegistro({ navigation }) {
+  const [form, setForm] = React.useState({
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    notes: null,
+  });
+
+  const handleCreatePatient = async () => {
+    if (!form.firstName || !form.lastName || !form.birthDate) {
+      Alert.alert(
+        "Por favor llene los siguientes campos: Nombres, Apellidos, Fecha de nacimiento"
+      );
+      return;
+    }
+
+    const token = await AsyncStorage.getItem('userToken');
+
+    fetch(process.env.API_URL + "/patients", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) =>
+        response.status === 201 ? response : Promise.reject(response)
+      )
+      .then((data) => {
+        Alert.alert("Registro exitoso", "Paciente registrado", [
+          {
+            text: "OK",
+            onPress: () => navigation.navigate("Pacientes"),
+          },
+        ]);
+      })
+      .catch((error) => {
+        if (error?.status === 400) {
+          error.json().then((body) => {
+            Alert.alert("Error", body?.message?.join(", "));
+          });
+          return;
+        }
+
+        if (error?.status === 409) {
+          Alert.alert("Error", "El paciente ya existe");
+          return;
+        }
+
+        console.log(error);
+        Alert.alert("Error", "Ocurrió un error al registrar el paciente");
+      });
+  };
+
+
   return (
     <View style={styles.container} >
 
@@ -22,19 +76,23 @@ function PacienteRegistro() {
     <View style={styles.card}>
 
       <TextInput style={styles.input}
+      onChangeText={text => setForm({...form, firstName: text})}
       placeholder="  Nombres"/>
 
      <TextInput style={styles.input}
+      onChangeText={text => setForm({...form, lastName: text})}
       placeholder="  Apellidos"/>
    
 
     <TextInput style={styles.input}
+      onChangeText={text => setForm({...form, birthDate: text})}
       placeholder="  Fecha de nacimiento"/>
 
     <TextInput style={styles.notas}
+      onChangeText={text => setForm({...form, notes: text})}
       placeholder="  Notas"/>
 
-    <Pressable  style={styles.buttonR} onPress={() => Alert.alert('Simple Button pressed')}>
+    <Pressable  style={styles.buttonR} onPress={handleCreatePatient}>
       <Text  style={styles.textR}>
         Registrar
         

@@ -24,6 +24,7 @@ function RegistroUsuario({ navigation }) {
       return;
     }
 
+    console.log(process.env.API_URL);
     fetch(process.env.API_URL + "/users/sign-up", {
       method: "POST",
       headers: {
@@ -52,7 +53,7 @@ function RegistroUsuario({ navigation }) {
           Alert.alert("Error", "El correo ya está registrado");
           return;
         }
-
+        console.log(error);
         Alert.alert("Error", "Ocurrió un error al registrar el usuario");
       });
   };
