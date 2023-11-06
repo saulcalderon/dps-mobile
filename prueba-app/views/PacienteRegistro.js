@@ -55,6 +55,7 @@ function PacienteRegistro({ navigation }) {
           return;
         }
 
+        console.log(error);
         Alert.alert("Error", "Ocurrió un error al registrar el paciente");
       });
   };

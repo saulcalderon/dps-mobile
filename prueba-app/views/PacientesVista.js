@@ -29,10 +29,17 @@ function Card({ text }) {
 
 function PacientesVista({ navigation }) {
   const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     fetchData();
-  });
+  }, []);
+
+  React.useEffect(() => {
+    navigation.addListener('focus', () => {
+      fetchData();
+    });
+  }, [navigation]);
 
   const fetchData = async () => {
     const token = await AsyncStorage.getItem("userToken");
@@ -43,10 +50,22 @@ function PacientesVista({ navigation }) {
         Authorization: "Bearer " + token,
       },
     })
-      .then((response) => response.json())
-      .then((result) => setData(result))
+
+    .then((response) => response.json())
+    .then((result) => {
+        setData(result);
+        setIsLoading(false);
+      })
       .catch((error) => console.error(error));
   };
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
