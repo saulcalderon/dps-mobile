@@ -18,6 +18,8 @@
 
 [Documento PDF](https://github.com/saulcalderon/dps-mobile/blob/main/DESARROLLOMULTIPLATAFORMAFASE1.pdf)
 
+[Manual de usuario](https://github.com/saulcalderon/dps-mobile/blob/main/Manual%20de%20usuario%20DPS-mobile.pdf)
+
 ## Licencia
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
