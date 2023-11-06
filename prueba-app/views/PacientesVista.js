@@ -6,6 +6,20 @@ import LogoExample from '../components/Logo.js';
 import Menu from '../components/Menu.js';
 import BotonCrearPaciente from '../components/BotonCrearPaciente.js';
 
+function Card() {
+  return (
+    <View style={styles.cardContainer}>
+      <Text style={styles.cardText}>Some text</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => Alert.alert("Simple Button pressed")}
+      >
+        <Text style={styles.buttonText}>Ver</Text>
+      </Pressable>
+    </View>
+  );
+}
+
 function PacientesVista({ navigation }) {
   return (
     <View style={styles.container} >
@@ -137,4 +151,40 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     margin: 4
   },
+
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'white',
+    borderRadius: 6,
+    padding: 10,
+    marginVertical: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    },
+
+    cardText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'black',
+    
+    },
+
+    button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 100,
+    borderRadius: 6,
+    backgroundColor: 'red',
+    marginLeft: 60,
+    },
+
+    buttonText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: 'white',
+    },
 });
