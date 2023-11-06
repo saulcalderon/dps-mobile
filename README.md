@@ -20,6 +20,8 @@
 
 [Manual de usuario](https://github.com/saulcalderon/dps-mobile/blob/main/Manual%20de%20usuario%20DPS-mobile.pdf)
 
+[Manual Tecnico](https://github.com/saulcalderon/dps-mobile/blob/main/Manual%20tecnico%20o%20del%20programador-DPS-Mobile.pdf)
+
 ## Licencia
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
