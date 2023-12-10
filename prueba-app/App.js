@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import 'expo-dev-client';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 import Inicio from './views/InicioVista.js';
 import LoginUsuario from './views/LoginUsuario.js';
