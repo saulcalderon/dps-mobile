@@ -27,6 +27,7 @@ function LoginUsuario({ navigation }) {
           password
         );
         const token = await response.user.getIdToken();
+        console.log(  token);
         await AsyncStorage.setItem('userToken', token);
         navigation.navigate('Citas');
       } catch (e) {
