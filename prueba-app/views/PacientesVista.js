@@ -13,13 +13,13 @@ import LogoExample from "../components/Logo.js";
 import Menu from "../components/Menu.js";
 import BotonCrearPaciente from "../components/BotonCrearPaciente.js";
 
-function Card({ text }) {
+function Card({ text, onPress }) {
   return (
     <View style={styles.cardContainer}>
       <Text style={styles.cardText}>{text}</Text>
       <Pressable
         style={styles.button}
-        onPress={() => Alert.alert("Simple Button pressed")}
+        onPress={onPress}
       >
         <Text style={styles.buttonText}>Ver</Text>
       </Pressable>
@@ -51,8 +51,8 @@ function PacientesVista({ navigation }) {
       },
     })
 
-    .then((response) => response.json())
-    .then((result) => {
+      .then((response) => response.json())
+      .then((result) => {
         setData(result);
         setIsLoading(false);
       })
@@ -77,7 +77,10 @@ function PacientesVista({ navigation }) {
 
       <View style={styles.card}>
         {data?.map((item) => (
-          <Card key={item.id} text={item.firstName + " " + item.lastName} />
+          <Card key={item.id} text={item.firstName + " " + item.lastName}
+            onPress={() => navigation.navigate('Detalle-Paciente', { patient: item })}
+          />
+
         ))}
       </View>
 
