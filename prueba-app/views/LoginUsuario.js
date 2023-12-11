@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
-import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import LogoExample from '../components/Logo.js';
+import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 function LoginUsuario() {
   const [initializing, setInitializing] = useState(true);
@@ -11,12 +12,24 @@ function LoginUsuario() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    GoogleSignin.configure({
-      scopes: ['email'],
-      webClientId: '703597223984-b7pagltgsni2vlljt3ft050a9v3pga4d.apps.googleusercontent.com',
-      offlineAccess: true,
-    });
-    setInitializing(false);
+    const initializeGoogleSignin = async () => {
+      await GoogleSignin.configure({
+        scopes: ['email'],
+        webClientId: '703597223984-b7pagltgsni2vlljt3ft050a9v3pga4d.apps.googleusercontent.com',
+        offlineAccess: true,
+      });
+
+      
+      try {
+        await GoogleSignin.signOut();
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
+
+      setInitializing(false);
+    };
+
+    initializeGoogleSignin();
   }, []);
 
   _signIn = async () => {
@@ -24,22 +37,20 @@ function LoginUsuario() {
       await GoogleSignin.hasPlayServices();
       const { accessToken, idToken, user } = await GoogleSignin.signIn();
 
-      // Crear credencial de Google
+      // Crear credenciales de google
       const googleCredential = auth.GoogleAuthProvider.credential(idToken, accessToken);
 
-      // Iniciar sesión en Firebase con la credencial de Google
+      //Iniciar sesión con Google
       const { additionalUserInfo, user: firebaseUser } = await auth().signInWithCredential(googleCredential);
 
-      // Verificar si es un nuevo usuario (primera vez que inicia sesión con Google)
+      //Verificar si es un nuevo usuario
       if (additionalUserInfo?.isNewUser) {
-        // Aquí puedes realizar acciones específicas para un nuevo usuario
-        // Puedes almacenar información adicional en Firebase Firestore, por ejemplo
-        // También puedes guardar información del usuario en tu base de datos, etc.
+       
       }
 
       setLoggedIn(true);
-      // Navegar a la vista "Citas" después de iniciar sesión
-      navigation.navigate('Citas');
+      //Redirijir a citas si el inicio de sesión es exitoso
+      navigation.navigate('Crear-Cita');
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         alert('Cancel');
@@ -67,7 +78,7 @@ function LoginUsuario() {
         <TextInput style={styles.input} placeholder="  Correo" />
         <TextInput secureTextEntry={true} style={styles.input} placeholder="  Contraseña" />
 
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Citas')}>
+        <Pressable style={styles.button1} onPress={() => navigation.navigate('Crear-Cita')}>
           <Text style={styles.text}>Iniciar Sesión</Text>
         </Pressable>
 
@@ -75,17 +86,15 @@ function LoginUsuario() {
 
         <View style={styles.body}>
           <View style={styles.sectionContainer}>
-            <GoogleSigninButton
-              style={{ width: 192, height: 48 }}
-              size={GoogleSigninButton.Size.Wide}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={_signIn}
-            />
+            <Pressable style={[styles.button, { backgroundColor: 'red' }]} onPress={_signIn}>
+              <Icon name="google" size={20} color="white" style={styles.icon} />
+              <Text style={styles.text}>Iniciar Sesión con Google</Text>
+            </Pressable>
           </View>
           <View style={styles.buttonContainer}>
-            {!loggedIn && <Text>You are currently logged out</Text>}
+            {!loggedIn && <Text></Text>}
             {loggedIn && (
-              <Pressable style={styles.button} onPress={() => navigation.navigate('Citas')}>
+              <Pressable style={styles.button} onPress={() => navigation.navigate('Crear-Cita')}>
                 <Text style={styles.text}>Iniciar Sesión</Text>
               </Pressable>
             )}
@@ -121,7 +130,8 @@ const styles = StyleSheet.create({
     flex: 9,
     backgroundColor: '#fff',
   },
-  button: {
+
+  button1: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
@@ -131,12 +141,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     margin: 5,
   },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 250,
+    borderRadius: 6,
+    elevation: 3,
+    margin: 5,
+  },
   text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+    marginLeft: 10,
   },
   input: {
     textAlign: 'center',
@@ -148,5 +169,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     margin: 20,
+  },
+  icon: {
+    marginRight: 10,
   },
 });
