@@ -23,6 +23,7 @@
 [Manual Tecnico](https://drive.google.com/file/d/1kim5dssnzFE4NJF1sIXJmAfXjg-fmz_j/view?usp=sharing)
 
 [Video Expositivo del Proyecto](https://www.youtube.com/watch?v=PqnCuyMCwc0)
+
 [Video Expositivo del Proyecto Completo](https://drive.google.com/file/d/1wWj9w3ABhx_gD4A443zLeLWg3LtnKYX0/view)
 ## Licencia
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
