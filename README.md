@@ -18,9 +18,9 @@
 
 [Documento PDF](https://github.com/saulcalderon/dps-mobile/blob/main/DESARROLLOMULTIPLATAFORMAFASE1.pdf)
 
-[Manual de usuario](https://github.com/saulcalderon/dps-mobile/blob/main/Manual%20de%20usuario%20DPS-mobile.pdf)
+[Manual de usuario](https://drive.google.com/file/d/1BarsBEfuStzmZdAW8i0ttaVyCBUwdIh4/view?usp=sharing)
 
-[Manual Tecnico](https://github.com/saulcalderon/dps-mobile/blob/main/Manual%20tecnico%20o%20del%20programador-DPS-Mobile.pdf)
+[Manual Tecnico](https://drive.google.com/file/d/1kim5dssnzFE4NJF1sIXJmAfXjg-fmz_j/view?usp=sharing)
 
 [Video Expositivo del Proyecto](https://www.youtube.com/watch?v=PqnCuyMCwc0)
 
